@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Insert Status</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background: #0078d4;
+            color: #fff;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .container {
+            background: #fff;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+            padding: 20px;
+            text-align: center;
+            max-width: 400px;
+        }
+
+        h1 {
+            color: #0078d4;
+            font-size: 36px;
+            margin-bottom: 20px;
+        }
+
+        p.success {
+            color: #009933;
+            font-size: 18px;
+        }
+
+        p.error {
+            color: #ff0000;
+            font-size: 18px;
+        }
+        
+        .footer {
+            background: #6b798a;
+            color: #111;
+            padding: 10px;
+            text-align: center;
+            position: fixed;
+			left: 0;
+			bottom: 0;
+			width: 100%;
+        }
+
+        .footer a {
+            color: #111;
+            text-decoration: underline;
+            margin: 0 10px;
+         }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Insertion Result</h1>
+        <div th:if="${error}">
+            <p class="error">An error occurred during the insertion process.</p>
+        </div>
+        <div th:if="${exists}">
+            <p class="error">Employee ID already exists. Record not saved.</p>
+        </div>
+        <div th:if="${saved}">
+            <p class="success">Record Successfully Saved</p>
+        </div>
+        <div th:if="${failed}">
+            <p class="error">Failed to Save Record</p>
+        </div>
+    </div>
+    
+    <div class="footer">
+		<a th:href="@{/}">Home</a>
+		 <!--<a th:href="@{/insert-employee-form}">Insert</a>-->
+	     <a th:href="@{/delete-employee-form}">Delete</a>
+	     <a th:href="@{/update-employee-form}">Update</a>
+	     <a th:href="@{/select-employee-form}">Select</a>
+	     <a th:href="@{/select-all}">Select All</a>
+		 
+		<p>&copy; 2024 Employee Management System</p>
+    </div>
+</body>
+</html>

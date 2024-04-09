@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Update Form</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f2f2f2;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        h2 {
+            text-align: center;
+            color: #333;
+        }
+
+        form {
+            background: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+            text-align: center;
+        }
+
+        form input[type="text"] {
+            padding: 10px;
+            margin: 10px 0;
+            width: auto;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        form input[type="submit"] {
+            padding: 10px 20px;
+            background: #0078d4;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        form input[type="submit"]:hover {
+            background: #0056b3;
+        }
+        
+        .footer {
+            background: #6b798a;
+            color: #111;
+            padding: 10px;
+            text-align: center;
+            position: fixed;
+			left: 0;
+			bottom: 0;
+			width: 100%;
+        }
+
+        .footer a {
+            color: #111;
+            text-decoration: underline;
+            margin: 0 10px;
+         }
+    </style>
+</head>
+<body>
+    <h2>Update Employee Form</h2>
+    <form action="update-employee" method="post">
+        Enter Employee ID: <input type="text" name="empid" /><br />
+        Enter New Name: <input type="text" name="empname" /><br />
+        Enter New Email: <input type="text" name="empemail" /><br />
+        Enter New Salary: <input type="text" name="empsal" /><br />
+        <input type="submit" value="Update" />
+    </form>
+    <div class="footer">
+		<a th:href="@{/}">Home</a>
+		 <a th:href="@{/insert-employee-form}">Insert</a>
+	     <a th:href="@{/delete-employee-form}">Delete</a>
+	     <!--<a th:href="@{/update-employee-form}">Update</a>-->
+	     <a th:href="@{/select-employee-form}">Select</a>
+	     <a th:href="@{/select-all}">Select All</a>
+		 
+ 		<p>&copy; 2024 Employee Management System</p>
+    </div>
+</body>
+</html>

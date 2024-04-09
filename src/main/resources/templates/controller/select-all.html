@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Select All Employees</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background: #f2f2f2;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        table {
+            background: #fff;
+            border-collapse: collapse;
+            width: 80%;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+            border-radius: 5px;
+            margin: 20px;
+        }
+
+        th, td {
+            padding: 10px;
+            text-align: left;
+        }
+
+        th {
+            background: #0078d4;
+            color: #fff;
+        }
+
+        tr:nth-child(even) {
+            background: #f2f2f2;
+        }
+
+        tr:nth-child(odd) {
+            background: #fff;
+        }
+
+        h1 {
+            color: #0078d4;
+            text-align: center;
+            margin: 20px 0;
+        }
+		
+		.footer {
+            background: #6b798a;
+            color: #111;
+            padding: 10px;
+            text-align: center;
+            position: fixed;
+            left: 0;
+            bottom: 0;
+            width: 100%;
+        }
+		
+        .footer a {
+            color: #111;
+            text-decoration: underline;
+            margin: 0 10px;
+         }
+        
+    </style>
+</head>
+<body>
+    <h1>Employee Records</h1>
+    <input type="submit" value="Download PDF" name="download" onclick="window.print()" />
+    <table border="1">
+        <tr>
+            <th>Employee Id</th>
+            <th>Employee Name</th>
+            <th>Employee Salary</th>
+            <th>Employee Email</th>
+        </tr>
+        <tr th:each="employee : ${employees}">
+            <td th:text="${employee.empId}"></td>
+            <td th:text="${employee.empName}"></td>
+            <td th:text="${employee.empSal}"></td>
+            <td th:text="${employee.empEmail}"></td>
+        </tr>
+    </table>
+	<div class="footer">
+		<a th:href="@{/}">Home</a>
+		 <a th:href="@{/insert-employee-form}">Insert</a>
+         <a th:href="@{/delete-employee-form}">Delete</a>
+         <a th:href="@{/update-employee-form}">Update</a>
+         <a th:href="@{/select-employee-form}">Select</a>
+         <!--<a th:href="@{/select-all}">Select All</a>-->
+				 
+ 		<p>&copy; 2024 Employee Management System</p>
+	    </div>
+    
+</body>
+</html>
