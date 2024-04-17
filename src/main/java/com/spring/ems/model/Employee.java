@@ -1,5 +1,6 @@
 package com.spring.ems.model;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 
@@ -7,16 +8,20 @@ import jakarta.persistence.Id;
 public class Employee {
 	
 	@Id
+	@Column(name = "empid")
 	private int empId; 
-	private String empName; 
-	private double empSal; 
+	@Column(name = "empname")
+	private String empName;
+	@Column(name = "empsal")
+	private float empSal; 
+	@Column(name = "empemail")
 	private String empEmail;
 	
 	
 	public Employee() {}
 	
 	
-	public Employee(int empId, String empName, double empSal, String empEmail) {
+	public Employee(int empId, String empName, float empSal, String empEmail) {
 		super();
 		this.empId = empId;
 		this.empName = empName;
@@ -39,7 +44,7 @@ public class Employee {
 	public double getEmpSal() {
 		return empSal;
 	}
-	public void setEmpSal(double empSal) {
+	public void setEmpSal(float empSal) {
 		this.empSal = empSal;
 	}
 	public String getEmpEmail() {

@@ -15,12 +15,12 @@
             height: 100vh;
         }
 
-        h2 {
+        h1 {
             text-align: center;
             color: #333;
         }
-
-        form {
+		
+		form {
             background: #fff;
             padding: 20px;
             border-radius: 5px;
@@ -28,15 +28,28 @@
             text-align: center;
         }
 
-        form input[type="text"] {
+        table {
+            background: #fff;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+            text-align: center;
+			margin: 0 auto;
+        }
+
+		td {
             padding: 10px;
-            margin: 10px 0;
+            text-align: right;
+        }
+
+        input[type="text"] {
+            padding: 10px;
             width: auto;
             border: 1px solid #ccc;
             border-radius: 5px;
         }
 
-        form input[type="submit"] {
+        input[type="reset"],
+        input[type="submit"] {
             padding: 10px 20px;
             background: #0078d4;
             color: #fff;
@@ -46,19 +59,20 @@
             transition: background 0.3s;
         }
 
-        form input[type="submit"]:hover {
+        input[type="reset"]:hover,
+        input[type="submit"]:hover {
             background: #0056b3;
         }
-        
+
         .footer {
             background: #6b798a;
             color: #111;
             padding: 10px;
             text-align: center;
             position: fixed;
-			left: 0;
-			bottom: 0;
-			width: 100%;
+            left: 0;
+            bottom: 0;
+            width: 100%;
         }
 
         .footer a {
@@ -69,23 +83,40 @@
     </style>
 </head>
 <body>
-    <h2>Update Employee Form</h2>
-    <form action="update-employee" method="post">
-        Enter Employee ID: <input type="text" name="empid" /><br />
-        Enter New Name: <input type="text" name="empname" /><br />
-        Enter New Email: <input type="text" name="empemail" /><br />
-        Enter New Salary: <input type="text" name="empsal" /><br />
-        <input type="submit" value="Update" />
-    </form>
+    <h1>Update Employee Form</h1>
+	<form action="update-employee" method="post">
+		<table border="1">        
+            <tr>
+                <td>Enter Employee ID:</td>
+                <td><input type="text" name="empid" /></td>
+            </tr>
+            <tr>
+                <td>Enter New Name:</td>
+                <td><input type="text" name="empname" /></td>
+            </tr>
+            <tr>
+                <td>Enter New Email:</td>
+                <td><input type="text" name="empemail" /></td>
+            </tr>
+            <tr>
+                <td>Enter New Salary:</td>
+                <td><input type="text" name="empsal" /></td>
+            </tr>
+            <tr>
+                <td><input type="reset" value="Reset" /></td>
+                <td><input type="submit" value="Update" /></td>
+            </tr>        
+    	</table>
+	</form>
     <div class="footer">
-		<a th:href="@{/}">Home</a>
-		 <a th:href="@{/insert-employee-form}">Insert</a>
-	     <a th:href="@{/delete-employee-form}">Delete</a>
-	     <!--<a th:href="@{/update-employee-form}">Update</a>-->
-	     <a th:href="@{/select-employee-form}">Select</a>
-	     <a th:href="@{/select-all}">Select All</a>
-		 
- 		<p>&copy; 2024 Employee Management System</p>
+        <a th:href="@{/}">Home</a>
+        <a th:href="@{/insert-employee-form}">Insert</a>
+        <a th:href="@{/delete-employee-form}">Delete</a>
+        <!--<a th:href="@{/update-employee-form}">Update</a>-->
+        <a th:href="@{/select-employee-form}">Select</a>
+        <a th:href="@{/select-all}">Select All</a>
+         
+        <p>&copy; 2024 Employee Management System</p>
     </div>
 </body>
 </html>

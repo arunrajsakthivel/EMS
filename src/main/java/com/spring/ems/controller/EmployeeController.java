@@ -1,5 +1,7 @@
 package com.spring.ems.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -11,6 +13,7 @@ import com.spring.ems.model.Employee;
 import com.spring.ems.service.EmployeeService;
 
 import org.springframework.ui.Model;
+import org.springframework.util.MultiValueMap;
 
 @Controller
 public class EmployeeController {
@@ -44,8 +47,10 @@ public class EmployeeController {
 	  }
 	  
 	  @GetMapping("select-all")
-	  public String selectAll() {
-		  return "controller/select-all";
+	  public String selectAll(Model model) {
+	      List<Employee> employees = employeeService.getEmployees();
+	      model.addAttribute("employees", employees);
+	      return "controller/select-all";
 	  }
 	  
 	  
@@ -67,21 +72,40 @@ public class EmployeeController {
 		  return "controller/save-employee";
 	  }
 	  
-	  @PostMapping("select-employee")
-	  public String selectEmployee(@RequestParam int empid) {
-	  	  return "controller/select-employee";
+	  @GetMapping("select-employee")
+	  public String selectEmployee(@RequestParam int empid,Model model) {
+	  	  Employee employee=employeeService.selectEmployeeByEmpID(empid);
+	  	  model.addAttribute("employee",employee);
+		  return "controller/select-employee";
+	  }
+	  	   
+	  @PostMapping("delete-employee")
+	  public String deleteEmployee(@RequestParam int empid,Model model) {
+		  boolean isDeleted=employeeService.deleteEmployeeByEmpID(empid);
+		  model.addAttribute("isDeleted", isDeleted);
+		  return "controller/delete-employee";
 	  }
 	  
 	  @PostMapping("update-employee")
-	  public String updateEmployee(@RequestParam int empid) {
-	  	  return "controller/update-employee";
+	  public String updateEmployee(@RequestParam MultiValueMap<String, String> formData, Model model) {
+		  
+		  String empId = formData.getFirst("empid");
+          String empName = formData.getFirst("empname");
+          String empEmail = formData.getFirst("empemail");
+          String empSal = formData.getFirst("empsal");
+          
+          Employee employee = new Employee();
+	      employee.setEmpId(Integer.parseInt(empId));
+	      employee.setEmpName(empName);
+	      employee.setEmpEmail(empEmail);
+	      employee.setEmpSal(Float.parseFloat(empSal));
+	      
+		  boolean isUpdated=employeeService.updateEmployeeByEmpID(employee);
+		  
+		  model.addAttribute("employee", employee);
+		  model.addAttribute("isUpdated", isUpdated);
+		  
+		  return "controller/update-employee";
 	  }
-	  
-	  @PostMapping("delete-employee")
-	  public String deleteEmployee(@RequestParam int empid) {
-		  @SuppressWarnings("unused")
-		  boolean isDeleted=employeeService.deleteEmployeeByEmpID(empid);
-		  return "controller/delete-employee";
-	  }
-	  	 	  
+	  	  	 	  
 }

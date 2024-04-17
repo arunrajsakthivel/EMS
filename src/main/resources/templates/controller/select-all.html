@@ -8,20 +8,20 @@
             font-family: 'Arial', sans-serif;
             background: #f2f2f2;
             margin: 0;
-            padding: 0;
-            display: flex;
-            justify-content: center;
+            padding: 0;            
             align-items: center;
             min-height: 100vh;
+			padding-bottom: 100px;
         }
 
         table {
             background: #fff;
             border-collapse: collapse;
-            width: 80%;
+            width: 95%;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
             border-radius: 5px;
             margin: 20px;
+			margin-bottom: 50px;
         }
 
         th, td {
@@ -48,6 +48,21 @@
             margin: 20px 0;
         }
 		
+		.pdf-container {
+	        display: flex;
+	        justify-content: center;
+	        align-items: center;
+	    }
+	
+	    .pdf {	     
+	        padding: 10px 20px;
+	        background-color: #007bff;
+	        color: #fff;
+	        border: none;
+	        border-radius: 5px;
+	        cursor: pointer;
+	    }
+		
 		.footer {
             background: #6b798a;
             color: #111;
@@ -69,7 +84,7 @@
 </head>
 <body>
     <h1>Employee Records</h1>
-    <input type="submit" value="Download PDF" name="download" onclick="window.print()" />
+    
     <table border="1">
         <tr>
             <th>Employee Id</th>
@@ -84,6 +99,11 @@
             <td th:text="${employee.empEmail}"></td>
         </tr>
     </table>
+	
+	<div class="pdf-container">
+	    <input class="pdf" type="submit" value="Download as PDF" name="download" onclick="window.print()" />
+	</div>
+	
 	<div class="footer">
 		<a th:href="@{/}">Home</a>
 		 <a th:href="@{/insert-employee-form}">Insert</a>
